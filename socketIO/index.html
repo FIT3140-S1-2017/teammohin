@@ -1,0 +1,17 @@
+<html>
+	<head></head>
+	<body>
+		<div id="message"></div>
+  			<script src="/socket.io/socket.io.js"></script>
+  			<script>
+   				var socket = io();
+    				// Start the Auction
+    				socket.emit('from-client', 11);
+    				socket.on('from-server', function (msg) {
+     					var clientBid = parseInt(msg) + Math.round(Math.random() * 15);
+      					socket.emit('from-client', clientBid);
+      					document.getElementById("message").innerHTML += '<br/>Client bid=' + clientBid + '    server bid=' + msg;
+   				 });
+  		</script>
+	</body>
+</html>
